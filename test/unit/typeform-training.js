@@ -1,8 +1,16 @@
 import typeformTraining from '../../src/typeform-training';
 
-
 describe('typeformTraining', () => {
-  require('simple-jsdom').install();
+  describe('tests against the DOM', () => {
+    it('renders', () => {
+      const newDiv = document.createElement('div');
+      const newContent = document.createTextNode('Hello world');
+      newDiv.appendChild(newContent);
+      const body = document.getElementsByTagName('body')[0];
+      body.appendChild(newDiv);
+      expect(body.innerHTML).to.eql('foo');
+    });
+  });
 
   describe('Greet function', () => {
     beforeEach(() => {
@@ -16,11 +24,6 @@ describe('typeformTraining', () => {
 
     it('should have always returned hello', () => {
       expect(typeformTraining.greet).to.have.always.returned('hello');
-    });
-
-    it('foo', () => {
-      console.log(document);
-      expect(document).to.eql('foo');
     });
   });
 });
